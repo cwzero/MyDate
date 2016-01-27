@@ -41,9 +41,13 @@ public class MyDate {
 	}
 
 	public void setDate(int year, int month, int day) {
-		this.year = year;
-		this.month = month;
-		this.day = day;
+		if (isValidDate(year, month, day)) {
+			this.year = year;
+			this.month = month;
+			this.day = day;
+		} else {
+			throw new IllegalArgumentException("Invalid year, month or day!");
+		}
 	}
 
 	public int getYear() {
@@ -51,7 +55,11 @@ public class MyDate {
 	}
 
 	public void setYear(int year) {
-		this.year = year;
+		if (isValidDate(year, month, day)) {
+			this.year = year;
+		} else {
+			throw new IllegalArgumentException("Invalid year!");
+		}
 	}
 
 	public int getMonth() {
@@ -59,7 +67,11 @@ public class MyDate {
 	}
 
 	public void setMonth(int month) {
-		this.month = month;
+		if (isValidDate(year, month, day)) {
+			this.month = month;
+		} else {
+			throw new IllegalArgumentException("Invalid month!");
+		}
 	}
 
 	public int getDay() {
@@ -67,7 +79,11 @@ public class MyDate {
 	}
 
 	public void setDay(int day) {
-		this.day = day;
+		if (isValidDate(year, month, day)) {
+			this.day = day;
+		} else {
+			throw new IllegalArgumentException("Invalid day!");
+		}
 	}
 
 	@Override
@@ -158,31 +174,31 @@ public class MyDate {
 
 	public static void main(String[] args) {
 		MyDate d1 = new MyDate(2012, 2, 28);
-		System.out.println(d1);             // Saturday 28 Feb 2015
-		System.out.println(d1.nextDay());   // Monday 29 Feb 2016
-		System.out.println(d1.nextDay());   // Tuesday 1 Mar 2016
+		System.out.println(d1); // Saturday 28 Feb 2015
+		System.out.println(d1.nextDay()); // Monday 29 Feb 2016
+		System.out.println(d1.nextDay()); // Tuesday 1 Mar 2016
 		System.out.println(d1.nextMonth()); // Friday 1 Apr 2016
-		System.out.println(d1.nextYear());  // Saturday 1 Apr 2017
+		System.out.println(d1.nextYear()); // Saturday 1 Apr 2017
 
 		MyDate d2 = new MyDate(2012, 1, 2);
-		System.out.println(d2);                 // Saturday 2 Jan 2016
-		System.out.println(d2.previousDay());   // Friday 1 Jan 2016
-		System.out.println(d2.previousDay());   // Thursday 31 Dec 2015
+		System.out.println(d2); // Saturday 2 Jan 2016
+		System.out.println(d2.previousDay()); // Friday 1 Jan 2016
+		System.out.println(d2.previousDay()); // Thursday 31 Dec 2015
 		System.out.println(d2.previousMonth()); // Wednesday 2 Dec 2015
-		System.out.println(d2.previousYear());  // Tuesday 2 Dec 2014
+		System.out.println(d2.previousYear()); // Tuesday 2 Dec 2014
 
 		MyDate d3 = new MyDate(2016, 2, 29);
-		System.out.println(d3.previousYear());  // Saturday 28 Feb 2015
+		System.out.println(d3.previousYear()); // Saturday 28 Feb 2015
 
 		// MyDate d4 = new MyDate(2099, 11, 31); // Invalid year, month, or day!
-		// MyDate d5 = new MyDate(2017, 2, 29);  // Invalid year, month, or day!
-		
+		// MyDate d5 = new MyDate(2017, 2, 29); // Invalid year, month, or day!
+
 		// Part 2 //
 		System.out.println();
 		System.out.println();
-		
+
 		MyDate date = new MyDate(2015, 2, 28);
-		
+
 		while (!(date.getYear() == 2016 && date.getMonth() == 3 && date.getDay() == 2)) {
 			date = date.nextDay();
 			System.out.println(date);
