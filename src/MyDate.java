@@ -126,6 +126,8 @@ public class MyDate {
 		}
 		if (year < 9999)
 			year++;
+		else
+			throw new IllegalStateException("Year out of range!");
 		return this;
 	}
 
